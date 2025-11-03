@@ -1,0 +1,34 @@
+services:
+#  mk-site:
+#    container_name: mk-site
+#    build:
+#      context: ./mk-site
+#      dockerfile: Dockerfile
+#    restart: unless-stopped
+#    volumes:
+#      - ./mk-site:/var/www
+#    depends_on:
+#      - mk-database
+#    networks:
+#      - mk-network
+
+  mk-database:
+    container_name: mk-database
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD-freshmarketpwd}
+      MYSQL_PASSWORD: ${DB_PASSWORD-freshmarketpwd}
+      MYSQL_USER: ${DB_USERNAME-freshmarket}
+    volumes:
+      - ./.docker/mysql/dbdata:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - mk-network
+
+volumes:
+  dbdata:
+
+networks:
+  mk-network:
+    driver: bridge
