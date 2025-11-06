@@ -20,7 +20,7 @@ if [ "$(docker ps -a -q -f name=mk-database)" ]; then
   # interact with found databases
   for i in "${!DATABASES[@]}"; do
     echo -e "--- Criando ou verificando DB: ${DATABASES[$i]}"
-#    docker exec -i mk-database mysql -uroot -p"$MYSQL_ROOT_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS \`${DATABASES[$i]}\`;"
+    docker exec -i mk-database mysql -uroot -p"$DB_PASSWORD" -e "CREATE DATABASE IF NOT EXISTS \`${DATABASES[$i]}\`;"
   done
 
   echo -e "===== Criação de bancos de dados finalizada com sucesso! ====="
