@@ -20,7 +20,7 @@ for i in "${!REPOS_TO_CREATE[@]}"; do
   if [ ! -e "./${REPOS_TO_CREATE[$i]}" ]; then
     # message and clone repo
     echo -e "Clonando repositório: ${REPOS_TO_CREATE[$i]}"
-    git clone git@github.com:maxrodrigues/${REPOS_TO_CREATE[$i]}
+    git clone git@github.com:maxrodrigues/${REPOS_TO_CREATE[$i]} >/dev/null 2>&1 || exit 1
   else
     # wait and message
     sleep 1
